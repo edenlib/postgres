@@ -29,7 +29,7 @@ $ podman run -it --rm -e JSONPATH=/home/adam/cfg/postgres-test.json db_admin:1.0
 ```
 
 ### Bare-metal
-Next, use `admin.py` to establish a database connection.
+Or, use `admin.py` to establish a database connection.
 ```shell
 (env)$ python sql/connect.py /home/adam/cfg/postgres-test.json
 ```
