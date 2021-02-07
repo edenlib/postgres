@@ -25,7 +25,7 @@ $ cd postgres
 Next, build and run the container image.
 ```shell
 $ podman build --tag db_admin:1.0 .
-$ podman run -it --rm -e JSONPATH=/app/cfg/postgres-test.json db_admin:1.0
+$ podman run -it --rm -e JSONPATH=/home/adam/cfg/postgres-test.json db_admin:1.0
 ```
 
 ### Bare-metal
