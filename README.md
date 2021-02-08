@@ -31,14 +31,15 @@ $ podman run -it --rm -e JSONPATH=/home/adam/cfg/postgres-test.json db_admin:1.0
 ### Bare-metal
 Or, use `admin.py` to establish a database connection.
 ```shell
-(env)$ python sql/connect.py /home/adam/cfg/postgres-test.json
+(env)$ python sql/admin.py /home/adam/cfg/postgres-test.json
 ```
 
 ### `admin.py`
 You can now execute SQL.
 ```shell
 -> print("COMMIT")
-(Pdb) curs.execute("select * from test;")
+(Pdb) with open("database_airflow.sql") as f: sql = f.read()
+(Pdb) curs.execute(sql)
 ```
 
 At any time, exit and discard any changes with `q`.
