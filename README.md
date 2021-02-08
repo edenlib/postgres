@@ -35,10 +35,10 @@ Or, use `admin.py` to establish a database connection.
 ```
 
 ### `admin.py`
-You are now in editing environment. Feel feel to make any changes.
+You can now execute SQL.
 ```shell
--> print("COMMITTING...")
-(Pdb) update_yahoo_finance(curs)
+-> print("COMMIT")
+(Pdb) curs.execute("select * from test;")
 ```
 
 At any time, exit and discard any changes with `q`.
