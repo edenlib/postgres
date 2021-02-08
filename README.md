@@ -13,7 +13,7 @@ Or, use `launch_postgres.sh` to run the container instead.
 $ ./launch_postgres.sh
 ```
 
-## Quickstart: Management tool
+## Quickstart: SQL admin tool
 First, clone and enter into this repository.
 ```shell
 $ cd ~/github/edenlib
