@@ -1,5 +1,5 @@
 # Postgres Configuration
-Contains configuration files and object mapping for Eden databases.
+Contains database configuration files, SQL, and an admin tool for Airflow.
 
 ## Create Eden database
 Create a PostgreSQL instance called `postgres-test`.
@@ -25,33 +25,14 @@ $ cd postgres
 Next, build and run the container image.
 ```shell
 $ podman build --tag db_admin:1.0 .
-$ podman run -it --rm -e JSONPATH=/home/adam/cfg/postgres-test.json db_admin:1.0
+$ podman run -it --rm -e \
+    JSONPATH=/home/adam/cfg/postgres-test.json \
+    SQLPATH=/app/sql/database_airflow.sql \
+    db_admin:1.0
 ```
 
 ### Bare-metal
-Or, use `admin.py` to establish a database connection.
+Or, use `admin.py` to establish a database connection and execute sql.
 ```shell
-(env)$ python sql/admin.py /home/adam/cfg/postgres-test.json
-```
-
-### `admin.py`
-You can now execute SQL.
-```shell
--> print("COMMIT")
-(Pdb) with open("database_airflow.sql") as f: sql = f.read()
-(Pdb) curs.execute(sql)
-```
-
-At any time, exit and discard any changes with `q`.
-```shell
-(Pdb) q
-Traceback (most recent call last):
-...
-```
-
-Commit your changes with `continue`.
-```shell
-(Pdb) continue
-COMMIT
-...
+(env)$ python sql/admin.py /home/adam/cfg/postgres-test.json sql/database_airflow.sql
 ```

@@ -10,14 +10,17 @@ import sys
 import conndb
 
 if __name__ == "__main__":
-    fpath = sys.argv[1]
+    # database config json file path
+    cfgpath = sys.argv[1]
+    # sql code file path
+    sqlpath = sys.argv[2]
 
-    conn = conndb.DBConfig.from_json(fpath).create_psycopg2_connection()
+    conn = conndb.DBConfig.from_json(cfgpath).create_psycopg2_connection()
 
-    with conn.cursor() as curs:
-        breakpoint()
-        print("COMMIT!")
-
-    conn.commit()
-
-    conn.close()
+    try:
+        with conn.cursor() as curs:
+            with open(sqlpath, "r") as sql:
+                curs.execute(sql.read())
+        conn.commit()
+    finally:
+        conn.close()
